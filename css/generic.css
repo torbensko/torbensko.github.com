@@ -1,0 +1,9 @@
+.bottom-aligned {
+    display:table;
+}
+
+.bottom-aligned > div {
+    display: table-cell;
+    vertical-align: bottom;
+    border-bottom:1px solid black;
+}​
