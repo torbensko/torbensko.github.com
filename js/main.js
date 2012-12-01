@@ -1,22 +1,9 @@
 
 $(function() {
 
-	function prepareOverlay() {
-		sizeOverlay();
-		// we manually resize it
-		$(window).on("resize", sizeOverlay);
-	}
-
-	// make the overlay responsive to the window size
-	if($("#overlay").is(":visible"))
-		prepareOverlay();
-
-	function revealOverlay() {
-		if(!$("#overlay").is(":visible")) {
-			prepareOverlay();
-			$("#overlay").fadeIn(sizeOverlay);
-		}
-	}
+	// make the overlay responsive to the window size (including absolute content)
+	sizeOverlay();
+	$(window).on("resize", sizeOverlay); // we manually resize it
 
 	// Converts site links into AJAX requests. Uses the history API to make it appear
 	// like the user is still jumping between pages.
@@ -34,8 +21,7 @@ $(function() {
 
 			// have we already done this?
 			if(target.length != 0 && target.children().length > 0) {
-				revealOverlay();
-				target.fadeIn();
+				target.fadeIn(prepareOverlay);
 				return;
 			}
 
@@ -54,10 +40,9 @@ $(function() {
 				}
 
 				target.load(link.data("href")+" .ajax-content");
-				target.addClass("active");
 
-				revealOverlay();
-				target.fadeIn();
+				target.fadeIn(500, sizeOverlay);
+				$(".dimable").addClass("dim", 500);
 			};
 
 			if($(".ajax-content:visible").length > 0) {
@@ -72,8 +57,9 @@ $(function() {
 	}); // $("a.ajax").each(...
 
 	$('#overlay').click(function() {
-		$(".active").add($(this)).fadeOut();
-		$(window).off("resize", this.sizeOverlay);
+		// restore eveything to normal
+		$(".dim").removeClass("dim", 500);
+		$(".content:visible").fadeOut();
 	});
 
 }); // end anonmous loading function
