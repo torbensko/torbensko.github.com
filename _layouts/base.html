@@ -3,14 +3,21 @@
   <head>
   	<meta charset="utf-8" />
   	<title> {% if page.title %} {{ page.title }} | {% endif %} TorbenSko.com </title>
-    <link rel="stylesheet" href="css/generic.css" />
-  	<link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="/css/generic.css" />
+  	<link rel="stylesheet" href="/css/main.css" />
   	<script src="/js/vendor/jquery-1.8.3.min.js"></script>
     <script src="/js/vendor/jquery-ui-1.9.2.custom.min.js"></script>
   </head>
 
-  <body>
+  <body {% if page.scheme %}class="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}>
     <div id="overlay"></div>
+
+    <div id="background-img">
+        <div class="gradient" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
+        <div class="gradient" style="background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
+        <img src="/img/{{ page.url | remove:'/index.html' }}_bg.jpg" />
+    </div>
+
     {{ content }}
 
   	<script src="/js/main.js"></script>

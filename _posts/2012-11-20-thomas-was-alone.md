@@ -1,8 +1,9 @@
 ---
 layout: review
-title: Thomas Was Alone Blah
+title: Thomas Was Alone
 category: review
-color: 000000
+color: "0,0,0"
+scheme: nocturn
 review-developer: Mike Bithell
 review-platforms: [PC, Mac]
 review-length: 3-5hrs
