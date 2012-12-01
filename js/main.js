@@ -1,6 +1,23 @@
 
 $(function() {
 
+	function prepareOverlay() {
+		sizeOverlay();
+		// we manually resize it
+		$(window).on("resize", sizeOverlay);
+	}
+
+	// make the overlay responsive to the window size
+	if($("#overlay").is(":visible"))
+		prepareOverlay();
+
+	function revealOverlay() {
+		if(!$("#overlay").is(":visible")) {
+			prepareOverlay();
+			$("#overlay").fadeIn(sizeOverlay);
+		}
+	}
+
 	// Converts site links into AJAX requests. Uses the history API to make it appear
 	// like the user is still jumping between pages.
 	$("a.ajax").each(function() { // only do it for ones we've explicitly specified
@@ -17,6 +34,7 @@ $(function() {
 
 			// have we already done this?
 			if(target.length != 0 && target.children().length > 0) {
+				revealOverlay();
 				target.fadeIn();
 				return;
 			}
@@ -34,11 +52,12 @@ $(function() {
 					console.error("no where to place the ajax content");
 					return;
 				}
-				console.log("hello "+target.attr("id"));
 
 				target.load(link.data("href")+" .ajax-content");
+				target.addClass("active");
+
+				revealOverlay();
 				target.fadeIn();
-				target.css("background", "red");
 			};
 
 			if($(".ajax-content:visible").length > 0) {
@@ -52,4 +71,18 @@ $(function() {
 		}); // link.click(function(...
 	}); // $("a.ajax").each(...
 
+	$('#overlay').click(function() {
+		$(".active").add($(this)).fadeOut();
+		$(window).off("resize", this.sizeOverlay);
+	});
+
 }); // end anonmous loading function
+
+
+
+// This caters for when the absolute content is longer than the relative stuff.
+function sizeOverlay() {
+  return $('#overlay')
+  		.width($(document).width())
+  		.height($(document).height());
+};

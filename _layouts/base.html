@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <div id="backdrop"></div>
+    <div id="overlay" {% if page.hide-backdrop %}style="display:none;"{% endif %}></div>
     {{ content }}
 
   	<script src="/js/main.js"></script>

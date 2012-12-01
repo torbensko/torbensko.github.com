@@ -1,11 +1,9 @@
 $smallFont: 10pt;
 $fontH1: 16pt;
 $colorPrimary: #8ad;
-$layerBackground: 1;
-$layerNormal: 2;
 
-$layerActive: 5;
-$layerBackdrop: ($layerActive - 1);
+$layerActive: 10;
+$layerBackdrop: ($layerActive - 5);
 
 body, td {
 	font-family: Helvetica Neue, Helvetica;
@@ -18,10 +16,6 @@ a, .a {
     cursor: pointer;
 }
 
-body * {
-    z-index: $layerNormal;
-}
-
 body {
     position:relative;
     padding:0;
@@ -30,17 +24,20 @@ body {
     width:100%;
 }
 
-.active {
-    z-index: $layerActive;
+
+#overlay {
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background: rgba(255,255,0, 0.7);
+    z-index: $layerBackdrop;
 }
 
-// #backdrop {
-//     position: absolute;
-//     height:100%;
-//     width:100%;
-//     background: rgba(255,255,0,.4);
-//     z-index: $layerBackdrop;
-// }
+.active * {
+    z-index: $layerActive;
+}
 
 
 
@@ -54,7 +51,12 @@ body {
     height: $entrySpacing;
 
     &.first {
-        margin-top: 80px;
+        $topOffset: 80px;
+
+        // use of margin-top causes the #backdrop to be offest from the top of the window
+        // use of padding-top causes the box to be too long
+        top: $topOffset; 
+        margin-bottom: $topOffset;
     }
 
     /* shrink the timeline entries together */
