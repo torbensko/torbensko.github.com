@@ -15,15 +15,15 @@ hide-backdrop: true
 
 	{% comment %} Seems weird to need to do this (below), but I couldn't get it to work without using a variable {% endcomment %}
 	{% assign isLeft = forloop.index | modulo:2 %}
-<div class="timeline-dot {% if isLeft == 1 %}left{% endif %}{% if isLeft == 0 %}right{% endif %}">
+<div class="timeline-entry {% if isLeft == 1 %}left{% endif %}{% if isLeft == 0 %}right{% endif %}">
 	<div>
-	    <div class="date dimable">{{ c.date | date: "%d %b '%y" }}</div>
+	    <div class="date">{{ c.date | date: "%d %b '%y" }}</div>
 	    <div class="line">
 	    	<div class="icon">
 	        	<img class="dimable" src="img/{{ contentName }}_icon.png" {% if c.color %}style="background-color:#{{ c.color }};" {% endif %} />
-	        	<div class="pre-title">
+	        	<div class="pre-entry">
 	        		<div class="entry-details">
-	        			<div class="title bottom-aligned dimable"><div>
+	        			<div class="title bottom-aligned"><div>
 	        				<a href="/{{ contentName }}/" class="ajax" data-target="{{ contentName }}-content">{{ c.title }}</a>
 	        			</div></div>
 	        			<div id="{{ contentName }}-content" class="content"></div>

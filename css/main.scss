@@ -87,7 +87,7 @@ body {
 $horLineWidth: 30px;
 $entryTitleHeight: 60px;
 
-.timeline-dot {
+.timeline-entry {
     position: relative;
     width: 200px;
     
@@ -134,7 +134,7 @@ $entryTitleHeight: 60px;
                 	height:100%;
                 }
 
-                .pre-title {
+                .pre-entry {
                 	position: absolute;
                 	bottom: 70px;
                 	border-bottom:1px dashed $colorPrimary;
@@ -160,7 +160,7 @@ $entryTitleHeight: 60px;
             .icon {
                 left: 100%;
 
-                .pre-title {
+                .pre-entry {
                 	width:30px;
                 }
             }        
@@ -179,7 +179,7 @@ $entryTitleHeight: 60px;
             .icon {
                 right: 100%;
 
-                .pre-title {
+                .pre-entry {
                 	width:200px;
                 }
             }        
@@ -210,10 +210,7 @@ $entryWidth: 600px;
 
     .content {
         padding-left:30px;
-        display: none;
-        
-        &.active {
-            display: block;
-        }
     }
 }
+
+

@@ -8,25 +8,35 @@ $(function() {
 	// Converts site links into AJAX requests. Uses the history API to make it appear
 	// like the user is still jumping between pages.
 	$("a.ajax").each(function() { // only do it for ones we've explicitly specified
-		var link = $("<span>", {class: "a"});
+		var _this = $("<span>", {class: "a"});
 			var target = $("#"+$(this).data("target"));
 
-		link.data("href", $(this).attr("href"));
+		_this.data("href", $(this).attr("href"));
 
 		// remove the link (avoid just setting the href to # as this will influence the history)
-		link.text($(this).text());
-		$(this).replaceWith(link);
+		_this.text($(this).text());
+		$(this).replaceWith(_this);
 
-		link.click(function() {
+		_this.click(function() {
+
+			// show the content for the chosen entry
+			function _revealContent() {
+				target.fadeIn(500, sizeOverlay);
+				$(".pre-entry").not(_this.parents()).fadeOut(500);
+				$(".dimable").not(
+						// find the parent element and then any dimable children (allows for cousin elements)
+						$(".dimable", _this.first().parents(".timeline-entry").first())
+					).addClass("dim", 500);
+			}
 
 			// have we already done this?
 			if(target.length != 0 && target.children().length > 0) {
-				target.fadeIn(prepareOverlay);
+				_revealContent();
 				return;
 			}
 
 			// update the URL
-			history.pushState(null, null, link.data("href"));
+			history.pushState(null, null, _this.data("href"));
 			
 			// swap the content
 			function _showContent() {
@@ -39,10 +49,8 @@ $(function() {
 					return;
 				}
 
-				target.load(link.data("href")+" .ajax-content");
-
-				target.fadeIn(500, sizeOverlay);
-				$(".dimable").addClass("dim", 500);
+				target.load(_this.data("href")+" .ajax-content");
+				_revealContent();
 			};
 
 			if($(".ajax-content:visible").length > 0) {
@@ -53,11 +61,12 @@ $(function() {
 			} else {
 				_showContent();
 			}
-		}); // link.click(function(...
+		}); // _this.click(function(...
 	}); // $("a.ajax").each(...
 
 	$('#overlay').click(function() {
 		// restore eveything to normal
+		$(".pre-entry").fadeIn();
 		$(".dim").removeClass("dim", 500);
 		$(".content:visible").fadeOut();
 	});
