@@ -9,17 +9,25 @@
     <script src="/js/vendor/jquery-ui-1.9.2.custom.min.js"></script>
   </head>
 
-  <body {% if page.scheme %}class="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}>
+  <body {% if page.scheme %}class="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}><div id="ajaxFrame"> <!-- required for the AJAX stuff (can't pull out part of the page without this it seems) -->
+
     <div id="overlay"></div>
 
-    <div id="background-img">
-        <div class="gradient" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
-        <div class="gradient" style="background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
-        <img src="/img/{{ page.url | remove:'/index.html' }}_bg.jpg" />
+    {% assign contentName = page.url | remove:'/index.html' | remove:'/' %}
+
+    <div id="background-container">
+{% if contentName != "" %}
+      <div class="background-img" {% if page.scheme %}data-scheme="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}>
+          <div class="gradient" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
+          <div class="gradient" style="background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
+          <img src="/img/{{ contentName }}_bg.jpg" />
+      </div>
+{% endif %}
     </div>
 
     {{ content }}
 
   	<script src="/js/main.js"></script>
-  </body>
+
+  </div></body>
 </html>

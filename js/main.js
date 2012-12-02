@@ -8,9 +8,13 @@ $(function() {
 	// Converts site links into AJAX requests. Uses the history API to make it appear
 	// like the user is still jumping between pages.
 	$("a.ajax").each(function() { // only do it for ones we've explicitly specified
-		var _this = $("<span>", {class: "a"});
-			var target = $("#"+$(this).data("target"));
+		var target = $("#"+$(this).data("target"));
+		if(target.length == 0) {
+			console.error("no where to place the ajax content");
+			return;
+		}
 
+		var _this = $("<span>", {class: "a"});
 		_this.data("href", $(this).attr("href"));
 
 		// remove the link (avoid just setting the href to # as this will influence the history)
@@ -18,49 +22,50 @@ $(function() {
 		$(this).replaceWith(_this);
 
 		_this.click(function() {
-
-			// show the content for the chosen entry
-			function _revealContent() {
-				target.fadeIn(500, sizeOverlay);
-				$(".pre-entry").not(_this.parents()).fadeOut(500);
-				$(".dimable").not(
-						// find the parent element and then any dimable children (allows for cousin elements)
-						$(".dimable", _this.first().parents(".timeline-entry").first())
-					).addClass("dim", 500);
-			}
-
 			// have we already done this?
 			if(target.length != 0 && target.children().length > 0) {
-				_revealContent();
+				_revealContent(target);
 				return;
 			}
 
+			// With an AJAX approach, we cannot get the body tag. To make this work, we need to
+			// wrap the contents of the page in an div, which in this case has the ajaxFrame class.
+			$.ajax({
+				url: _this.data("href"),
+				dataType: "html",
+				success: function(data) {
+
+					data = $(data);
+
+					// add the content in
+					var content = $(".ajax-content", data);
+					if(content == 0) {
+						log.error("no ajax content found");
+					} else {
+						target.append($(".ajax-content", data));
+						_revealContent(target);
+					}
+
+					// change the website theme
+					bgImg = $(".background-img", data);
+					if(bgImg.length > 0)
+					{
+						$("body").animate({"background-color": bgImg.css("background-color")}, 500);
+
+						if(bgImg.data("scheme")) {
+							$("body").data("scheme", bgImg.data("scheme"));
+							$("body").addClass(bgImg.data("scheme"), 500);
+						}
+
+						$("#background-container").children().fadeOut();
+						$("#background-container").append(bgImg.hide());
+						bgImg.fadeIn();
+					}
+				}
+			});
+
 			// update the URL
 			history.pushState(null, null, _this.data("href"));
-			
-			// swap the content
-			function _showContent() {
-
-				if(target.length == 0)
-					target = $(".ajax-container"); // look for a generic container
-
-				if(target.length == 0) {
-					console.error("no where to place the ajax content");
-					return;
-				}
-
-				target.load(_this.data("href")+" .ajax-content");
-				_revealContent();
-			};
-
-			if($(".ajax-content:visible").length > 0) {
-				// remove the existing AJAX content
-				$(".ajax-content").fadeOut(function() {
-					_showContent();
-				});
-			} else {
-				_showContent();
-			}
 		}); // _this.click(function(...
 	}); // $("a.ajax").each(...
 
@@ -72,6 +77,16 @@ $(function() {
 	});
 
 }); // end anonmous loading function
+
+
+// Show the content for the chosen entry.
+function _revealContent(contents) {
+	contents.fadeIn(500, sizeOverlay);
+
+	var oldestAncestor = contents.first().parents(".timeline-entry").first();
+	$(".pre-entry").not($(".pre-entry", oldestAncestor)).fadeOut(500);
+	$(".dimable").not($(".dimable", oldestAncestor)).addClass("dim", 500);
+}
 
 
 
