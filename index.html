@@ -17,6 +17,7 @@ hide-backdrop: true
 		    --></div>
 	    </div>
     </div>
+    <div class="vertical-rule"></div>
 </div>
 
 
@@ -27,7 +28,7 @@ hide-backdrop: true
 
 	{% comment %} Seems weird to need to do this (below), but I couldn't get it to work without using a variable {% endcomment %}
 	{% assign isLeft = forloop.index | modulo:2 %}
-<div class="timeline-entry {% if isLeft == 1 %}left{% endif %}{% if isLeft == 0 %}right{% endif %} {{ c.categories | join:' ' }}">
+<div class="timeline timeline-entry {% if isLeft == 1 %}left{% endif %}{% if isLeft == 0 %}right{% endif %} {{ c.categories | join:' ' }}">
 	<div class="dot">
 	    <div class="date">{{ c.date | date: "%d %b '%y" }}</div>
 	    <div class="line">
@@ -44,9 +45,11 @@ hide-backdrop: true
 	        </div>
 	    </div>
 	</div>
-	<div class="bottom-line collapse"></div>
+	<div class="vertical-rule collapse"></div>
 </div>
 
 {% endfor %}
 
-<div class="timeline last"></div>
+<div class="timeline last">
+	<div class="vertical-rule"></div>
+</div>

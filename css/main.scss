@@ -73,18 +73,28 @@ body {
 
 
 
-
+$horLineWidth: 30px;
+$entryTitleHeight: 60px;
+$entrySpacing: 120px;
 
 
 .timeline {
-	$entrySpacing: 120px;
-
     position: relative;
     width: 200px;
-    height: $entrySpacing;
 
-    border-right-width: 1px;
-    border-right-style: solid;
+    .vertical-rule {
+
+        height: $entrySpacing;
+        position: relative;
+        left: 100%;
+        border-left-style: solid;
+        border-left-width: 1px;
+
+        /* shrink the timeline entries together */
+        &.collapse {
+            height: ($entrySpacing - 50px);
+        }
+    }
 
     &.first {
         $topOffset: 80px;
@@ -95,7 +105,7 @@ body {
         margin-bottom: $topOffset;
     }
 
-    &.last {
+    &.last .vertical-rule {
         height:600px;
     }
 
@@ -138,29 +148,8 @@ body {
     }
 }
 
-$horLineWidth: 30px;
-$entryTitleHeight: 60px;
-
 .timeline-entry {
     $dotSize: 10px;
-
-    position: relative;
-    width: 200px;
-
-    .bottom-line {
-        $entrySpacing: 120px;
-        
-        height: $entrySpacing;
-        position:relative;
-        left:100%;
-        border-left-style: solid;
-        border-left-width: 1px;
-
-        /* shrink the timeline entries together */
-        &.collapse {
-            height: ($entrySpacing - 50px);
-        }
-    }
     
     .dot {
         position:relative;
