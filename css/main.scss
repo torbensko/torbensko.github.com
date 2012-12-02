@@ -1,5 +1,5 @@
 $smallFont: 10pt;
-$fontH1: 16pt;
+$fontH1: 18pt;
 $colorPrimary: #8ad;
 
 
@@ -170,6 +170,7 @@ $entryTitleHeight: 60px;
                 img {
                 	width:100%;
                 	height:100%;
+                    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
                 }
 
                 .pre-entry {
@@ -205,7 +206,7 @@ $entryTitleHeight: 60px;
                 left: 100%;
 
                 .pre-entry {
-                	width:30px;
+                	width:50px;
                 }
             }        
         }
