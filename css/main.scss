@@ -76,6 +76,7 @@ body {
 $horLineWidth: 30px;
 $entryTitleHeight: 60px;
 $entrySpacing: 120px;
+$entryCollapsedSpacing: ($entrySpacing - 50px);
 
 
 .timeline {
@@ -92,7 +93,7 @@ $entrySpacing: 120px;
 
         /* shrink the timeline entries together */
         &.collapse {
-            height: ($entrySpacing - 50px);
+            height: $entryCollapsedSpacing;
         }
     }
 
@@ -150,13 +151,21 @@ $entrySpacing: 120px;
 
 .timeline-entry {
     $dotSize: 10px;
+
+    .vertical-rule {
+        margin-top: $dotSize;
+    }
     
     .dot {
         position:relative;
         left: 100%;
         width: $dotSize;
-        margin-left: -($dotSize/2);
+
+        /* This needs to not offset other elements, due to how we hide it (as part of the menu) */
         height: $dotSize;
+        margin-bottom: -$dotSize; 
+
+        margin-left: -($dotSize/2);
         border-width: 1px;
         border-style: solid;
 

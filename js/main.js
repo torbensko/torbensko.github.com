@@ -4,10 +4,24 @@
 
 $(function() {
 
+	// Algorithmically work out the seperation between entries (seems dirty - open to a better idea).
+	var tmp = $("<div>", {class: "timeline timeline-entry"}).append($("<div>", {class: "vertical-rule"}));
+	$("body").prepend(tmp);
+
+	var vr = $(".vertical-rule", tmp);
+	normalMarginTop = vr.css("margin-top");
+	normalHeight = vr.css("height");
+	vr.addClass("collapse");
+	collapsedHeight = vr.css("height");
+	tmp.remove();
+
 	$(".menu-category").each(function() {
 		prevSteps = 0;
 
 		function advanceMenu(menuItem) {
+			// Pretend the background was clicked on, in order to have the content hidden
+			$("#overlay").click();
+
 			// how many across are we?
 			var steps = $(".category-menu .menu-category").index(menuItem);
 			var stepSize = parseInt($(".menu-category").outerWidth());
@@ -20,20 +34,21 @@ $(function() {
 						advanceMenu($(this));
 					})
 				);
-				console.log(i);
 			}
 			prevSteps = steps;
 
 			$(".category-menu .scrolling").animate({"margin-left": (-stepSize*steps)+'px'});
 			
-			// Filter the timeline
+			// Filter the timeline:
+			//	Fade out the dot (it shouldn't vertically offset other elements, so removing it shouldn't have any effect)
+			//	Collapse the timeline between the entries`
 			var toShow = menuItem.data("category").length > 0 ? $('.'+menuItem.data("category")) : $(".timeline-entry");
-			toShow.fadeIn(); //animate({height: "toggle"});
+			$(".dot:hidden", toShow).fadeIn();
+			$(".vertical-rule", toShow).animate({height: normalHeight, "margin-top": normalMarginTop});
 
-			$(".timeline-entry").not(toShow).fadeOut();
-			// animate({height: "toggle"}, function() {
-			// 	$(this).hide();
-			// });
+			var toHide = $(".timeline-entry:visible").not(toShow);
+			$(".dot", toHide).fadeOut();
+			$(".vertical-rule", toHide).animate({height: "0px", "margin-top": "0px"});
 		}
 
 		$(this).click(function() { 
