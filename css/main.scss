@@ -169,7 +169,7 @@ $entryCollapsedSpacing: ($entrySpacing - 50px);
         border-width: 1px;
         border-style: solid;
 
-        -webkit-border-radius: $dotSize/2;
+        //-webkit-border-radius: $dotSize/2;
 
         .date {
             $dateHeight: 20px; /* large enough to hold text */
