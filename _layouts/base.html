@@ -5,8 +5,6 @@
   	<title> {% if page.title %} {{ page.title }} | {% endif %} TorbenSko.com </title>
     <link rel="stylesheet" href="/css/generic.css" />
   	<link rel="stylesheet" href="/css/main.css" />
-  	<script src="/js/vendor/jquery-1.8.3.min.js"></script>
-    <script src="/js/vendor/jquery-ui-1.9.2.custom.min.js"></script>
   </head>
 
   <body {% if page.scheme %}class="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}><div id="ajaxFrame"> <!-- required for the AJAX stuff (can't pull out part of the page without this it seems) -->
@@ -17,17 +15,20 @@
     {% assign bgOverlay = 0.3 %}
 
     <div id="background-container">
-{% if contentName != "" %}
       <div class="background-img" {% if page.scheme %}data-scheme="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}>
+{% if contentName != "" %}
           <div class="gradient" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}}, {{ bgOverlay }})), color-stop(100%, rgba({{page.color}}, {{ bgOverlay }})))"></div>
           <div class="gradient" style="background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}}, {{ bgOverlay }})), color-stop(100%, rgba({{page.color}}, {{ bgOverlay }})))"></div>
           <img src="/img/{{ contentName }}_bg.jpg" />
-      </div>
 {% endif %}
+      </div>
     </div>
 
     {{ content }}
 
+    <script src="/js/vendor/jquery-1.8.3.min.js"></script>
+    <script src="/js/vendor/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="/js/util.js"></script>
   	<script src="/js/main.js"></script>
 
   </div></body>
