@@ -11,7 +11,7 @@ body, td {
     border-width: 0px;
 
     &.scheme-nocturn {
-        color: #ddd;
+        color: #bbb;
         border-color: white;
     }
 }
@@ -284,7 +284,19 @@ $entryWidth: 600px;
 	}
 
     .content {
-        padding-left:30px;
+        padding-left: 30px;
+        padding-top: 10px;
+
+        .detail {
+            font-size: 110%;
+
+            span {
+                width: 7em;
+                text-align: right;
+                padding-right: 5px;
+                display: inline-block;
+            }
+        }
     }
 }
 

@@ -1,10 +1,21 @@
 ---
-layout: base
+layout: ajax
 ---
 
-<div class="review ajax-content">
-	{{content}}
-	<script>
-		console.log("hello");
-	</script>
-</div>
+{% if page.review-developer %}
+	<div class="detail"><span>Developer:</span> {{ page.review-developer }}</div>	
+{% endif %}
+
+{% if page.review-platforms %}
+	<div class="detail"><span>Platforms:</span> {{ page.review-platforms | array_to_sentence_string }}</div>
+{% endif %}
+
+{% if page.review-length %}
+	<div class="detail"><span>Length:</span> {{ page.review-length }}</div>
+{% endif %}
+
+{% if page.review-rating %}
+	<div class="detail"><span>Rating:</span> {{ page.review-rating }}</div>
+{% endif %}
+
+{{content}}
