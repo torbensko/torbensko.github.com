@@ -95,7 +95,7 @@ function _revealContent(entryURL) {
 	var oldBgImg = $("#background-container >:visible");
 	var newBgImg = $("#background-container ."+cssName);
 
-	if(oldBgImg.hasClass('_'+cssName))
+	if(oldBgImg.hasClass(cssName))
 		oldBgImg = []; // pretend we didn't find an image
 
 	// Order:
