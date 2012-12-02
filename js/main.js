@@ -20,7 +20,7 @@ $(function() {
 
 		function advanceMenu(menuItem) {
 			// Pretend the background was clicked on, in order to have the content hidden
-			//$("#overlay").click();
+			$("#overlay").click();
 
 			// how many across are we?
 			var steps = $(".category-menu .menu-category").index(menuItem);
