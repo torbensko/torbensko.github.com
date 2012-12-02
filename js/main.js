@@ -4,6 +4,37 @@
 
 $(function() {
 
+	$(".menu-category").each(function() {
+		prevSteps = 0;
+
+		function advanceMenu(menuItem) {
+			// how many across are we?
+			var steps = $(".category-menu .menu-category").index(menuItem);
+			var stepSize = parseInt($(".menu-category").outerWidth())+2;
+
+			// Pad it with extra entries on the end
+			for(var i = 0; i < (steps - prevSteps); i++) {
+
+				$(".category-menu .menu-category:last-child").after(
+					$(".category-menu .menu-category").eq(prevSteps + i).clone().click(function() {
+						advanceMenu($(this));
+					})
+				);
+				console.log(i);
+			}
+			prevSteps = steps;
+
+			$(".category-menu .scrolling").animate({"margin-left": (-stepSize*steps)+'px'}, function() {
+				// Filter the timeline
+			});
+		}
+
+		$(this).click(function() { 
+			advanceMenu($(this));
+		});
+	});
+
+
 	// make the overlay responsive to the window size (including absolute content)
 	sizeOverlay();
 	$(window).on("resize", sizeOverlay); // we manually resize it

@@ -106,16 +106,40 @@ body {
 
     .top {
         $width: 100px;
-        $borderWidth: 1px;    
+        $borderWidth: 1px; 
+        $height: 40px;   
                     
         width: $width - 2*$borderWidth;
-        height: 38px;
+        height: $height;
         position: absolute;
         bottom: 100%;
         right: -($width/2);
 
         border-width: $borderWidth;
         border-style: solid;
+
+        .category-menu {
+            position:absolute;
+            top:0;
+            left:0;
+            height: $height;
+            width:800px;
+            overflow: hidden;
+
+            .scrolling {
+                margin-left: 0;
+
+                .menu-category {
+                    width: $width;
+                    text-align: center;
+                    line-height: $height;
+                    display:inline-block;
+                    cursor: pointer;
+                    margin:0px;
+                    padding:0px;
+                }
+            }
+        }
     }
 }
 

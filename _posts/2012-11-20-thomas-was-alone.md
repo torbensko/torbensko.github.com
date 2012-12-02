@@ -4,6 +4,7 @@ title: Thomas Was Alone
 category: review
 color: "0,0,0"
 scheme: nocturn
+
 review-developer: Mike Bithell
 review-platforms: [PC, Mac]
 review-length: 3-5hrs
