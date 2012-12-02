@@ -20,7 +20,7 @@ $(function() {
 
 		function advanceMenu(menuItem) {
 			// Pretend the background was clicked on, in order to have the content hidden
-			$("#overlay").click();
+			//$("#overlay").click();
 
 			// how many across are we?
 			var steps = $(".category-menu .menu-category").index(menuItem);
@@ -44,11 +44,28 @@ $(function() {
 			//	Collapse the timeline between the entries`
 			var toShow = menuItem.data("category").length > 0 ? $('.'+menuItem.data("category")) : $(".timeline-entry");
 			$(".dot:hidden", toShow).fadeIn();
-			$(".vertical-rule", toShow).animate({height: normalHeight, "margin-top": normalMarginTop});
+
+			toShow.each(function(i) {
+				console.log(i);
+
+				var isLeft = $(this).hasClass("left");
+				var nextLeft = isLeft;
+
+				if(i < toShow.length-1)
+					nextLeft = toShow.eq(i+1).hasClass("left");
+
+				var height = (isLeft == nextLeft ? normalHeight : collapsedHeight);
+
+				var vr = $(".vertical-rule", $(this));
+				vr.animate({ "height": height, "margin-top": normalMarginTop });
+
+			});
 
 			var toHide = $(".timeline-entry:visible").not(toShow);
-			$(".dot", toHide).fadeOut();
-			$(".vertical-rule", toHide).animate({height: "0px", "margin-top": "0px"});
+			if(toHide.length > 0) {
+				$(".dot", toHide).fadeOut();
+				$(".vertical-rule", toHide).animate({height: "0px", "margin-top": "0px"});
+			}
 		}
 
 		$(this).click(function() { 
