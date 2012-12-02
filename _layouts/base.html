@@ -14,12 +14,13 @@
     <div id="overlay"></div>
 
     {% assign contentName = page.url | remove:'/index.html' | remove:'/' %}
+    {% assign bgOverlay = 0.3 %}
 
     <div id="background-container">
 {% if contentName != "" %}
       <div class="background-img" {% if page.scheme %}data-scheme="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}>
-          <div class="gradient" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
-          <div class="gradient" style="background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}},0.5)), color-stop(100%, rgba({{page.color}},0.5)))"></div>
+          <div class="gradient" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}}, {{ bgOverlay }})), color-stop(100%, rgba({{page.color}}, {{ bgOverlay }})))"></div>
+          <div class="gradient" style="background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba({{page.color}},1)), color-stop(30%, rgba({{page.color}}, {{ bgOverlay }})), color-stop(100%, rgba({{page.color}}, {{ bgOverlay }})))"></div>
           <img src="/img/{{ contentName }}_bg.jpg" />
       </div>
 {% endif %}

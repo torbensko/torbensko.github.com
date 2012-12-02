@@ -50,16 +50,35 @@ $(function() {
 					bgImg = $(".background-img", data);
 					if(bgImg.length > 0)
 					{
-						$("body").animate({"background-color": bgImg.css("background-color")}, 500);
+						// Hide the image before changing the background colour. Likewise, we change
+						// the background colour before showing the new image.
 
-						if(bgImg.data("scheme")) {
-							$("body").data("scheme", bgImg.data("scheme"));
-							$("body").addClass(bgImg.data("scheme"), 500);
+						function _showNew() {
+							$("#background-container").append(bgImg.hide());
+
+							var existingScheme = $("body").data("scheme");
+							var newScheme = bgImg.data("scheme");
+
+							// tweak the colour scheme
+							if(existingScheme != newScheme) {
+								if(existingScheme)
+									$("body").removeClass(existingScheme, 500).data("scheme", null);
+								if(newScheme)
+									$("body").addClass(newScheme, 500).data("scheme", newScheme);
+							}
+
+							$("body").animate({"background-color": bgImg.css("background-color")}, 1000, function() {
+								bgImg.fadeIn();
+							});
 						}
 
-						$("#background-container").children().fadeOut();
-						$("#background-container").append(bgImg.hide());
-						bgImg.fadeIn();
+						var oldBgImg = $("#background-container *:visible");
+
+						if(oldBgImg.length > 0)
+							oldBgImg.fadeOut(_showNew);
+						else
+							_showNew();
+						
 					}
 				}
 			});
