@@ -10,7 +10,7 @@ $(function() {
 		function advanceMenu(menuItem) {
 			// how many across are we?
 			var steps = $(".category-menu .menu-category").index(menuItem);
-			var stepSize = parseInt($(".menu-category").outerWidth())+2;
+			var stepSize = parseInt($(".menu-category").outerWidth());
 
 			// Pad it with extra entries on the end
 			for(var i = 0; i < (steps - prevSteps); i++) {
