@@ -24,9 +24,16 @@ $(function() {
 			}
 			prevSteps = steps;
 
-			$(".category-menu .scrolling").animate({"margin-left": (-stepSize*steps)+'px'}, function() {
-				// Filter the timeline
-			});
+			$(".category-menu .scrolling").animate({"margin-left": (-stepSize*steps)+'px'});
+			
+			// Filter the timeline
+			var toShow = menuItem.data("category").length > 0 ? $('.'+menuItem.data("category")) : $(".timeline-entry");
+			toShow.fadeIn(); //animate({height: "toggle"});
+
+			$(".timeline-entry").not(toShow).fadeOut();
+			// animate({height: "toggle"}, function() {
+			// 	$(this).hide();
+			// });
 		}
 
 		$(this).click(function() { 

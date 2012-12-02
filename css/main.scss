@@ -99,11 +99,6 @@ body {
         height:600px;
     }
 
-    /* shrink the timeline entries together */
-    &.collapse {
-    	height: ($entrySpacing - 50px);
-    }
-
     .top {
         $width: 100px;
         $borderWidth: 1px; 
@@ -123,7 +118,7 @@ body {
             top:0;
             left:0;
             height: $height;
-            width:600px;
+            width:700px;
             overflow: hidden;
 
             .scrolling {
@@ -147,12 +142,27 @@ $horLineWidth: 30px;
 $entryTitleHeight: 60px;
 
 .timeline-entry {
+    $dotSize: 10px;
+
     position: relative;
     width: 200px;
+
+    .bottom-line {
+        $entrySpacing: 120px;
+        
+        height: $entrySpacing;
+        position:relative;
+        left:100%;
+        border-left-style: solid;
+        border-left-width: 1px;
+
+        /* shrink the timeline entries together */
+        &.collapse {
+            height: ($entrySpacing - 50px);
+        }
+    }
     
-     > div {
-        $dotSize: 10px;
-    
+    .dot {
         position:relative;
         left: 100%;
         width: $dotSize;

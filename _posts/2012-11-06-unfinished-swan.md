@@ -1,7 +1,7 @@
 ---
 layout: review
 title: The Unfinished Swan
-category: review
+categories: [review, highlight]
 color: "255,255,255"
 
 review-developer: Mike Bithell
