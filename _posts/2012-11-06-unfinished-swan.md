@@ -3,6 +3,7 @@ layout: ajax
 title: The Unfinished Swan
 categories: [review, highlight]
 color: "255,255,255"
+gradient-alpha: 0.6
 
 review-developer: Mike Bithell
 review-platforms: [PC, Mac]

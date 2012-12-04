@@ -3,6 +3,7 @@ layout: ajax
 title: Billboard &mdash; a HTML5 tool for creating a kiosk display
 categories: [project, download, demo, highlight]
 color: "237,237,237"
+gradient-alpha: 0.6
 
 project-name: billboard
 github-name: billboard

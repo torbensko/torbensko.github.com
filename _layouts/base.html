@@ -13,27 +13,30 @@
 
     {% comment %} This makes the assumption that the name follows this format: '/name/index.html' {% endcomment %}
     {% capture contentName %}{{ page.url | remove:'/index.html' | remove:'/' }}{% endcapture %}
-    {% assign gradient_alpha = 0.4 %}
+    {% assign gradient-alpha = 0.4 %}
+    {% if page.gradient-alpha > 0 %}
+      {% assign gradient-alpha = page.gradient-alpha %}
+    {% endif %}
 
     <div id="background-container">
       <div class="background-img" {% if page.scheme %}data-scheme="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}>
 {% if contentName != "" %}
           <!-- vertical gradient -->
           <div class="gradient" style="
-background: -moz-linear-gradient(top,  rgba({{ page.color }},1) 0%, rgba({{ page.color }}, {{ gradient_alpha }}) 30%, rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba({{ page.color }},1)), color-stop(30%,rgba({{ page.color }}, {{ gradient_alpha }})), color-stop(100%,rgba({{ page.color }}, {{ gradient_alpha }})));
-background: -webkit-linear-gradient(top,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: -o-linear-gradient(top,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: -ms-linear-gradient(top,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: linear-gradient(to bottom,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);"></div>
+background: -moz-linear-gradient(top,  rgba({{ page.color }},1) 0%, rgba({{ page.color }}, {{ gradient-alpha }}) 30%, rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba({{ page.color }},1)), color-stop(30%,rgba({{ page.color }}, {{ gradient-alpha }})), color-stop(100%,rgba({{ page.color }}, {{ gradient-alpha }})));
+background: -webkit-linear-gradient(top,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: -o-linear-gradient(top,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: -ms-linear-gradient(top,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: linear-gradient(to bottom,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);"></div>
           <!-- horizontal gradient -->
           <div class="gradient" style="
-background: -moz-linear-gradient(left,  rgba({{ page.color }},1) 0%, rgba({{ page.color }}, {{ gradient_alpha }}) 30%, rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba({{ page.color }},1)), color-stop(30%,rgba({{ page.color }}, {{ gradient_alpha }})), color-stop(100%,rgba({{ page.color }}, {{ gradient_alpha }})));
-background: -webkit-linear-gradient(left,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: -o-linear-gradient(left,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: -ms-linear-gradient(left,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);
-background: linear-gradient(to right,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient_alpha }}) 30%,rgba({{ page.color }}, {{ gradient_alpha }}) 100%);"></div>
+background: -moz-linear-gradient(left,  rgba({{ page.color }},1) 0%, rgba({{ page.color }}, {{ gradient-alpha }}) 30%, rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba({{ page.color }},1)), color-stop(30%,rgba({{ page.color }}, {{ gradient-alpha }})), color-stop(100%,rgba({{ page.color }}, {{ gradient-alpha }})));
+background: -webkit-linear-gradient(left,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: -o-linear-gradient(left,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: -ms-linear-gradient(left,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);
+background: linear-gradient(to right,  rgba({{ page.color }},1) 0%,rgba({{ page.color }}, {{ gradient-alpha }}) 30%,rgba({{ page.color }}, {{ gradient-alpha }}) 100%);"></div>
 
           <img src="/img/{{ contentName }}_bg.jpg" />
 {% endif %}
