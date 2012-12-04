@@ -1,5 +1,5 @@
 ---
-layout: review
+layout: ajax
 title: The Unfinished Swan
 categories: [review, highlight]
 color: "255,255,255"
@@ -9,6 +9,8 @@ review-platforms: [PC, Mac]
 review-length: 3-5hrs
 review-rating: take or leave
 ---
+
+{% include review.html %}
 
 There's a proven recipe to making a successful indie game. Firstly, get a well-known form of gameplay and inject a novel mechanic. Add to this an artistic style and finish by injecting a quirky story. For the best results, avoid giving closure. Such a formula has worked wonders for Limbo and Journey, and now the same can be said for The Unfinished Swan.
 

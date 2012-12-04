@@ -1,5 +1,5 @@
 ---
-layout: review
+layout: ajax
 title: Thomas Was Alone
 category: review
 color: "0,0,0"
