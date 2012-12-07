@@ -11,6 +11,8 @@ review-length: 3-5hrs
 review-rating: take or leave
 ---
 
+{% include review.html %}
+
 *Thomas Was Alone* is another of those indie games that presents itself in a well-polished and eye-catching package. The visuals are crisp and distinctively simple. The inclusion of an engaging narrative provides a kooky edge that sees it join that upper-indie echelon. However, despite having all the trailer-friendly hallmarks of a standout title, the gameplay just doesn't stand up.
 
 In Thomas Was Alone, you see yourself guiding Thomas and his friends – each being simple blocks of colour – around a classic platformer setting. The goal of each level is to get your blocks to a specific location, having overcome a range of logical and dexterous tasks. Each block has their own characteristics with, for instance, the smaller and wider blocks being slower and less agile (note to developers: slow and cumbersome doesn't tend to lend itself to enjoyable play). The levels offer ever-changing tasks, providing some variation to game, but simply not enough.

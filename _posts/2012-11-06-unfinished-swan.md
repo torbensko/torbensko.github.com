@@ -1,14 +1,14 @@
 ---
 layout: ajax
 title: The Unfinished Swan
-categories: [review, highlight]
+categories: [review]
 color: "255,255,255"
 gradient-alpha: 0.6
 
-review-developer: Mike Bithell
-review-platforms: [PC, Mac]
-review-length: 3-5hrs
-review-rating: take or leave
+review-developer: Giant Sparrow
+review-platform: PS3 (PSN)
+review-length: 2-4hrs
+review-rating: Take or leave
 ---
 
 {% include review.html %}
