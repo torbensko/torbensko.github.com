@@ -39,12 +39,15 @@ hide-backdrop: true
 	    <div class="date">{{ c.date | date: "%d %b '%y" }}</div>
 	    <div class="line">
 	    	<div class="icon">
-	        	<img class="dimable" src="/img/{{ contentName }}_icon.png" {% if c.color %}style="background-color:#{{ c.color }};" {% endif %} />
+	        	<img class="dimable" src="/img/{{ contentName }}_icon.png" {% if c.color %}style="background-color:rgb({{ c.color }});" {% endif %} />
 	        	<div class="pre-entry hidable">
 	        		<div class="entry-details">
 	        			<div class="title bottom-aligned"><div>
 	        				<a href="/{{ contentName }}/" class="ajax">{{ c.title }}</a>
 	        			</div></div>
+	        			{% if c.caption %}
+	        			<div class="caption">{{ c.caption }}</div>
+	        			{% endif %}
 	        			<div class="content"></div>
 	        		</div>
 	        	</div>

@@ -3,7 +3,7 @@ $normFont: 12pt;
 $fontH1: 18pt;
 $fontH2: 16pt;
 $fontH3: 14pt;
-$colorPrimary: #888;
+$colorPrimary: rgb(100,150,180);
 
 
 body, td {
@@ -28,6 +28,12 @@ a, .a {
     text-decoration: none;
     color: $colorPrimary;
     cursor: pointer;
+}
+
+.scheme-nocturn {
+    a, .a {
+        color: rgb(178,202,220);
+    }
 }
 
 body {
@@ -290,6 +296,10 @@ $entryWidth: 600px;
 		padding-right: 20px;
 		max-width: $entryWidth;
 	}
+
+    .caption {
+        padding-left:50px;
+    }
 
     .content {
         padding-left: 30px;

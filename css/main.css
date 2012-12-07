@@ -19,8 +19,11 @@ h1 {
 
 a, .a {
   text-decoration: none;
-  color: #888888;
+  color: #6496b4;
   cursor: pointer; }
+
+.scheme-nocturn a, .scheme-nocturn .a {
+  color: #b2cadc; }
 
 body {
   position: relative;
@@ -146,7 +149,7 @@ body {
       .timeline-entry .dot .line .icon .entry-details .title > div {
         border-bottom-width: 1px;
         border-bottom-style: dashed;
-        border-color: #888888; }
+        border-color: #6496b4; }
 .timeline-entry.right > div .date {
   right: 100%;
   text-align: right; }
@@ -180,6 +183,8 @@ body {
     font-size: 18pt;
     padding-right: 20px;
     max-width: 600px; }
+  .entry-details .caption {
+    padding-left: 50px; }
   .entry-details .content {
     padding-left: 30px;
     padding-top: 10px; }
