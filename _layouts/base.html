@@ -11,7 +11,9 @@
 
   <body {% if page.scheme %}class="scheme-{{ page.scheme }}"{% endif %} {% if page.color %}style="background-color: rgb({{page.color}});"{% endif %}><div id="ajaxFrame"> <!-- required for the AJAX stuff (can't pull out part of the page without this it seems) -->
 
+    {% if page.show-overlay %}
     <div id="overlay"></div>
+    {% endif %}
 
     {% comment %} This makes the assumption that the name follows this format: '/name/index.html' {% endcomment %}
     {% capture contentName %}{{ page.url | remove:'/index.html' | remove:'/' }}{% endcapture %}
